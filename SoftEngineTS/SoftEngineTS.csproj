@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,39 +59,15 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="babylon.math.ts" />
-    <Content Include="babylon.math.js">
-      <DependentUpon>babylon.math.ts</DependentUpon>
-    </Content>
-    <Content Include="babylon.math.min.js">
-      <DependentUpon>babylon.math.ts</DependentUpon>
-    </Content>
     <TypeScriptCompile Include="main.ts" />
     <Content Include="index.html" />
     <TypeScriptCompile Include="SoftEngine.ts" />
-    <Content Include="main.js">
-      <DependentUpon>main.ts</DependentUpon>
-    </Content>
-    <Content Include="main.min.js">
-      <DependentUpon>main.ts</DependentUpon>
-    </Content>
-    <Content Include="SoftEngine.js">
-      <DependentUpon>SoftEngine.ts</DependentUpon>
-    </Content>
-    <Content Include="SoftEngine.min.js">
-      <DependentUpon>SoftEngine.ts</DependentUpon>
-    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SoftEngine.min.js.map">
-      <DependentUpon>SoftEngine.js</DependentUpon>
-    </Content>
-    <Content Include="main.min.js.map">
-      <DependentUpon>main.js</DependentUpon>
-    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
