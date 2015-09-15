@@ -91,6 +91,23 @@ module SoftEngine {
                 this.putPixel(point.x, point.y, new BABYLON.Color4(1, 1, 0, 1));
             }
         }
+        public drawLine(point0: BABYLON.Vector2, point1: BABYLON.Vector2): void {
+            var dist = point1.subtract(point0).length();
+
+            // If the distance between the 2 points is less than 2 pixels
+            // We're exiting
+            if (dist < 2)
+                return;
+
+            // Find the middle point between first & second point
+            var middlePoint = point0.add((point1.subtract(point0)).scale(0.5));
+            // We draw this point on screen
+            this.drawPoint(middlePoint);
+            // Recursive algorithm launched between first & middle point
+            // and between middle & second point
+            this.drawLine(point0, middlePoint);
+            this.drawLine(middlePoint, point1);
+        }
 
         // The main method of the engine that re-compute each vertex projection
         // during each frame
