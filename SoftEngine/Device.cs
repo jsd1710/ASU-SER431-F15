@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml.Media.Imaging;
 using System.Runtime.InteropServices.WindowsRuntime;
 using SharpDX;
+using System;
 
 namespace SoftEngine
 {
@@ -99,6 +100,29 @@ namespace SoftEngine
             DrawLine(point0, middlePoint);
             DrawLine(middlePoint, point1);
         }
+        public void DrawBline(Vector2 point0, Vector2 point1)
+        {
+            int x0 = (int)point0.X;
+            int y0 = (int)point0.Y;
+            int x1 = (int)point1.X;
+            int y1 = (int)point1.Y;
+
+            var dx = Math.Abs(x1 - x0);
+            var dy = Math.Abs(y1 - y0);
+            var sx = (x0 < x1) ? 1 : -1;
+            var sy = (y0 < y1) ? 1 : -1;
+            var err = dx - dy;
+
+            while (true)
+            {
+                DrawPoint(new Vector2(x0, y0));
+
+                if ((x0 == x1) && (y0 == y1)) break;
+                var e2 = 2 * err;
+                if (e2 > -dy) { err -= dy; x0 += sx; }
+                if (e2 < dx) { err += dx; y0 += sy; }
+            }
+        }
 
         // The main method of the engine that re-compute each vertex projection
         // during each frame
@@ -136,9 +160,9 @@ namespace SoftEngine
                     var pixelB = Project(vertexB, transformMatrix);
                     var pixelC = Project(vertexC, transformMatrix);
 
-                    DrawLine(pixelA, pixelB);
-                    DrawLine(pixelB, pixelC);
-                    DrawLine(pixelC, pixelA);
+                    DrawBline(pixelA, pixelB);
+                    DrawBline(pixelB, pixelC);
+                    DrawBline(pixelC, pixelA);
                 }
             }
         }
