@@ -3,29 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftEngineTS", "SoftEngineTS\SoftEngineTS.csproj", "{E7A553D4-1255-4F66-BE62-EB153691ADFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftEngineTS", "Assignment1\SoftEngineTS\SoftEngineTS.csproj", "{E7A553D4-1255-4F66-BE62-EB153691ADFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftEngine", "SoftEngine\SoftEngine.csproj", "{85BE3B54-222E-4FAD-9C2A-0F46969D4FF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftEngine", "Assignment1\SoftEngine\SoftEngine.csproj", "{85BE3B54-222E-4FAD-9C2A-0F46969D4FF0}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SoftEngineJS", "SoftEngineJS\", "{F3B4B1B2-7EB8-440F-AA60-50E024EF38B8}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SoftEngineJS", "Assignment1\SoftEngineJS\", "{F3B4B1B2-7EB8-440F-AA60-50E024EF38B8}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_9262"
-		Debug.AspNetCompiler.PhysicalPath = "SoftEngineJS\"
+		Debug.AspNetCompiler.PhysicalPath = "Assignment1\SoftEngineJS\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_9262\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_9262"
-		Release.AspNetCompiler.PhysicalPath = "SoftEngineJS\"
+		Release.AspNetCompiler.PhysicalPath = "Assignment1\SoftEngineJS\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_9262\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "9262"
-		SlnRelativePath = "SoftEngineJS\"
+		SlnRelativePath = "Assignment1\SoftEngineJS\"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Assignment2", "Assignment2\", "{D176BCAE-2BEE-4000-9C40-0E9450626466}"
