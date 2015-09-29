@@ -1,13 +1,15 @@
-var scene, camera, renderer;
+"use strict";
+var scene, camera, renderer, controls;
 var mesh;
+var subdivisions = 0;
 
 var TOOLBAR_HEIGHT = 100;
 var WIDTH = window.innerWidth,
 	  HEIGHT = window.innerHeight - TOOLBAR_HEIGHT;
 
 init();
+
 addToDOM();
-animate();
 
 function init()
 {
@@ -36,14 +38,18 @@ function init()
     var light = new THREE.PointLight(0xffffff);
     light.position.set(-100, 200, 100);
     scene.add(light);
-
+    
     var loader = new THREE.JSONLoader();
     loader.load("models/monkey.json", function (geometry)
     {
         var material = new THREE.MeshLambertMaterial({ color: 0xFF69B4 });
-        mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
-    });
+        mesh = new THREE.Mesh( geometry, material );
+        //subdivide( mesh );
+        scene.add( mesh );
+
+        animate();
+    } );
+    
 
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 }
@@ -54,13 +60,8 @@ function animate()
 
     renderer.render(scene, camera);
 
-    /*
-    if (mesh)
-    {
-      mesh.rotation.y += 0.1;
-      mesh.rotation.x += 0.1;
-    }
-    */
+    //mesh.rotation.y += 0.1;
+    //mesh.rotation.x += 0.1;
 
     controls.update();
 }
@@ -74,4 +75,44 @@ function addToDOM()
         container.removeChild(canvas[0]);
     }
     container.appendChild(renderer.domElement);
+}
+
+function subdivide(mesh)
+{
+    scene.remove( mesh );
+    let newGeo = mesh.geometry.clone();
+    newGeo.mergeVertices();
+    newGeo.computeFaceNormals();
+    newGeo.computeVertexNormals();
+
+    var modifier = new THREE.SubdivisionModifier( subdivisions );
+    modifier.modify( newGeo );
+    mesh.geometry = newGeo;
+    scene.add( mesh );
+    updateSubdivisionCounter();
+}
+
+function getSubdivisions()
+{
+    return subdivisions;
+}
+
+function updateSubdivisionCounter()
+{
+    document.getElementById( "subCount" ).innerHTML = getSubdivisions();
+}
+
+function decrementSubdivisions()
+{
+    if (subdivisions-1 >= 0)
+        subdivisions--;
+    subdivide( mesh );
+    updateSubdivisionCounter();
+}
+function incrementSubdivisions()
+{
+    if ( subdivisions + 1 <= 6 )
+        subdivisions++;
+    subdivide( mesh );
+    updateSubdivisionCounter();
 }

@@ -15,13 +15,13 @@
 				<table style="line-height:2px;">
 					<tr>
 					<td>
-						<input type="button" value="-" onclick="" />
+						<input type="button" value="-" onclick="decrementSubdivisions();" />
 					</td>
 					<td>
-						<div style="border:1px black; padding:1em;" value="" >0</div>
+						<div id="subCount" style="border:1px black; padding:1em;" >0</div>
 					</td>
 					<td>
-						<input type="button" value="+" onclick="" />
+						<input type="button" value="+" onclick="incrementSubdivisions();" />
 					</td>
 				</table>
 				<p style="height:20px;">Number of Sub-divisions</p>
@@ -29,6 +29,7 @@
 		</div>
 		<script src="lib/three.min.js"></script>
 		<script src="lib/OrbitControls.js"></script>
+        <script src="lib/SubdivisionModifier.js"></script>
 		<script src="main.js"></script>
 	</body>
 </html>
