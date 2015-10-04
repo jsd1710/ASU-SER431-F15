@@ -1,7 +1,10 @@
 "use strict";
 var scene, camera, renderer, controls;
 var mesh;
+var originalMesh;
 var subdivisions = 0;
+var modifier = new THREE.SubdivisionModifier(subdivisions);
+
 
 var TOOLBAR_HEIGHT = 100;
 var WIDTH = window.innerWidth,
@@ -42,15 +45,14 @@ function init()
     var loader = new THREE.JSONLoader();
     loader.load("models/monkey.json", function (geometry)
     {
-        var material = new THREE.MeshLambertMaterial({ color: 0xFF69B4 });
-        mesh = new THREE.Mesh( geometry, material );
-        //subdivide( mesh );
+        var material = new THREE.MeshLambertMaterial({ color: 0xFF69B4, wireframe: true });
+        mesh = new THREE.Mesh(geometry, material);
+        originalMesh = mesh.clone();
         scene.add( mesh );
 
         animate();
     } );
     
-
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 }
 
@@ -80,16 +82,11 @@ function addToDOM()
 function subdivide(mesh)
 {
     scene.remove( mesh );
-    let newGeo = mesh.geometry.clone();
-    newGeo.mergeVertices();
-    newGeo.computeFaceNormals();
-    newGeo.computeVertexNormals();
+    let newGeo = originalMesh.geometry.clone();
 
-    var modifier = new THREE.SubdivisionModifier( subdivisions );
     modifier.modify( newGeo );
     mesh.geometry = newGeo;
     scene.add( mesh );
-    updateSubdivisionCounter();
 }
 
 function getSubdivisions()
@@ -104,15 +101,24 @@ function updateSubdivisionCounter()
 
 function decrementSubdivisions()
 {
-    if (subdivisions-1 >= 0)
+    if (subdivisions > 0)
+    {
         subdivisions--;
-    subdivide( mesh );
-    updateSubdivisionCounter();
+        updateSubdivisionCounter();
+        modifier = new THREE.SubdivisionModifier(subdivisions);
+        subdivide(mesh);
+    }
+    
+    
 }
 function incrementSubdivisions()
 {
-    if ( subdivisions + 1 <= 6 )
+    if (subdivisions < 5)
+    {
         subdivisions++;
-    subdivide( mesh );
-    updateSubdivisionCounter();
+        updateSubdivisionCounter();
+        modifier = new THREE.SubdivisionModifier(subdivisions);
+        subdivide(mesh);
+    }
+        
 }
